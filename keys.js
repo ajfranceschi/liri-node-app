@@ -4,6 +4,6 @@ exports.spotify = {
 };
 
 exports.omdb = {
-  key: `ddd61706`
+  key: process.env.OMDB_KEY
 };
 
