@@ -62,7 +62,7 @@ switch (inputArray[2]) {
 
   case 'movie-this':
     const movieName = inputArray[3] ? inputArray[3] : 'Mr. Nobody';
-    console.log(movieThis(movieName));
+    movieThis(movieName);
     break;
 
   case 'do-what-it-says':
