@@ -7,3 +7,7 @@ exports.omdb = {
   key: process.env.OMDB_KEY
 };
 
+exports.bands = {
+  id: process.env.BANDS_ID
+};
+

@@ -10,7 +10,25 @@ const spotify = new SpotifyApi(keys.spotify);
 
 
 const concertThis = (band) => {
+  const query = `https://rest.bandsintown.com/artists/${band}/events?app_id=${keys.bands.id}&date=upcoming`;
 
+  axios.get(query).then(response => {
+    if (response.data.length) {
+      response.data.map(event => {
+        const venueName = event.venue.name;
+        const venueLocation = `${event.venue.city}, ${event.venue.country}`;
+        const eventDate = moment(event.datetime).format('MM/DD/YYYY');
+        console.log(`
+          ###################################
+          Venue Name: ${venueName}\n
+          Venue Location: ${venueLocation}\n
+          Event Date: ${eventDate}
+        `);
+      });
+    } else {
+      console.log('Could not find artist.')
+    }
+  }).catch(error => console.log(error.response.data.errorMessage));
 };
 
 const spotifyThis = (song) => {
@@ -52,7 +70,8 @@ const movieThis = (movie) => {
 
 switch (inputArray[2]) {
   case "concert-this":
-    console.log("concert-this");
+    const band = inputArray[3] ? inputArray[3] : 'Green Day';
+    concertThis(band);
     break;
 
   case "spotify-this-song":
@@ -76,6 +95,7 @@ switch (inputArray[2]) {
 
         switch (dataArray[0]) {
           case 'concert-this':
+            concertThis(dataArray[1].replace(/"/g, ""));
             break;
           case 'spotify-this-song':
             spotifyThis(query);
