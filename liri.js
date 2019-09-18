@@ -95,7 +95,7 @@ switch (inputArray[2]) {
 
         switch (dataArray[0]) {
           case 'concert-this':
-            concertThis(dataArray[1].replace(/"/g, ""));
+            concertThis(dataArray[1].replace(/"/g, "").toLowerCase());
             break;
           case 'spotify-this-song':
             spotifyThis(query);
